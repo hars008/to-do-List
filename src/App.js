@@ -1,57 +1,59 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import Details from './Details';
-import axios from 'axios'
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import Details from "./Details";
+import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:1234";
+axios.defaults.baseURL = "https://backendapitodo.onrender.com/";
 axios.defaults.withCredentials = true;
 
 function App() {
-const [data, setData] = useState()
-const [user, setUser] = useState()
-const [searchInput, setSearchInput] = useState('')
+  const [data, setData] = useState();
+  const [user, setUser] = useState();
+  const [searchInput, setSearchInput] = useState("");
 
+  const fetchJson = () => {
+    axios
+      .get("/todos")
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => {
+        setData(data);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
+  useEffect(() => {
+    fetchJson();
+  }, []);
 
-const fetchJson = () => {
-  axios.get('/todos')
-  .then(response => {
-    return response.data;
-  }).then(data => {
-    setData(data);
-  }).catch((e) => {
-    console.log(e.message);
-  });
-}
-useEffect(() => {
-  fetchJson()
-},[])
+  const viewUser = (e) => {
+    let id = e.currentTarget.id;
+    let todoData = data
+      .filter((item) => {
+        return Number(item.id) === Number(id);
+      })
+      .map((item) => {
+        return { todoId: item.id, todoTitle: item.title, uid: item.userId };
+      });
 
+    axios
+      .get("/users/" + Number(todoData[0].uid))
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => {
+        setUser({ Data: data, TodoData: todoData });
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
-const viewUser = e => {
-  let id = e.currentTarget.id;
-  let todoData = data.filter((item) => {
-    return Number(item.id) === Number(id);
-  }).map((item) => {
-    return {todoId: item.id, todoTitle: item.title , uid: item.userId};
-  });
-
-  axios.get("/users/" + Number(todoData[0].uid))
-    .then((response) => {
-      return response.data;
-    })
-    .then((data) => {
-      setUser({Data: data , TodoData: todoData});
-
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
-};
-
-const handleClose = () => {
-  setUser(null)
-}
-
+  const handleClose = () => {
+    setUser(null);
+  };
 
   return (
     <>
@@ -70,8 +72,6 @@ const handleClose = () => {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                 />
-
-                
               </div>
             </div>
           </div>

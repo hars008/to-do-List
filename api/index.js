@@ -18,7 +18,7 @@ var users = JSON.parse(fs.readFileSync("./user.json", "utf8"));
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://backendapitodo.onrender.com/",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
