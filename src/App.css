@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
+table{
+    width: 80%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    border-radius: 15px;
+    /* overflow: hidden; */
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.tbl{
+    margin-top: 50px;
+    height:400px;
+    width: 90%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 5%;
+    border-radius: 15px;
+    overflow: hidden;
+    overflow: scroll;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+th, td{
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+tr:nth-child(even){
+    background-color: #f1f1f1;
 }
-
-.App-link {
-  color: #61dafb;
+tr:hover{
+    background-color: #ddd;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+th{
+    background-color: #4CAF50;
+    color: white;
+}
+.search{
+    width: fit-content;
+    padding: 12px ;
+    /* margin: 8px 0; */
+    margin-right: 0;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+.headr{
+    display: flex;
+    justify-content: space-between;
+}
+h1{
+    margin-left: 15px;
+}
+.search input{
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    width: fit-content;
+    border-radius: 25px;
+}
+.srchbtn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 11px 10px 8px 10px;
+    margin: 5px 10px 10px 2px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    /* width: 30%; */
+}
+.srchbtn:hover{
+    background-color: #45a049;
+}
+.headr h1{
+    margin-right: 15px;
+    
 }
