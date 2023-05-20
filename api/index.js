@@ -16,7 +16,7 @@ var users = JSON.parse(fs.readFileSync("./user.json", "utf8"));
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://keen-muffin-b24056.netlify.app/",
+    origin: "https://keen-muffin-b24056.netlify.app",
     credentials: true,
   })
 );
